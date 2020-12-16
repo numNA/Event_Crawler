@@ -4,7 +4,7 @@ from datetime import date
 from dateutil.relativedelta import relativedelta
 
 today = date.today()
-edate = today + relativedelta(month=7)
+edate = today + relativedelta(months=+2)
 today = today.isoformat()
 edate = edate.isoformat()
 page = 1
