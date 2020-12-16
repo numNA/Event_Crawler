@@ -7,9 +7,15 @@ import re
 import requests
 from bs4 import BeautifulSoup
 from datetime import date
+from dateutil.relativedelta import relativedelta
 
-year = str(date.today().year)
-Smonth = str(date.today().month).zfill(2)
+today = date.today()
+edate = today + relativedelta(months=+2)
+
+Syear = str(today.year)
+Smonth = str(today.month)
+Eyear = str(edate.year)
+Emonth = str(edate.month)
 
 title = []
 period = []
@@ -22,7 +28,7 @@ def get_events():
     for pg in range(last_p):
         print(f"Scrapping KINTEX page {pg+1}")
         page = pg+1
-        URL = f"https://www.kintex.com/client/c010101/c010101_00.jsp?sField=&sWord=&eventClCode=&prmtrNm=&koreanEventNm=&searchType=period&periodSYear={year}&periodSMonth={Smonth}&periodEYear=2020&periodEMonth=12&cPage={page}"
+        URL = f"https://www.kintex.com/client/c010101/c010101_00.jsp?sField=&sWord=&eventClCode=&prmtrNm=&koreanEventNm=&searchType=period&periodSYear={Syear}&periodSMonth={Smonth}&periodEYear={Eyear}&periodEMonth={Emonth}&cPage={page}"
 
         result = requests.get(f"{URL}")
         soup = BeautifulSoup(result.text, "html.parser")
@@ -42,7 +48,7 @@ def get_events():
 
 
 def extract_pages():
-    URL = f"https://www.kintex.com/client/c010101/c010101_00.jsp?sField=&sWord=&eventClCode=&prmtrNm=&koreanEventNm=&searchType=period&periodSYear={year}&periodSMonth={Smonth}&periodEYear=2020&periodEMonth=12&cPage=1"
+    URL = f"https://www.kintex.com/client/c010101/c010101_00.jsp?sField=&sWord=&eventClCode=&prmtrNm=&koreanEventNm=&searchType=period&periodSYear={Syear}&periodSMonth={Smonth}&periodEYear={Eyear}&periodEMonth={Emonth}&cPage=1"
     kintex_res = requests.get(URL)
     kintex_soup = BeautifulSoup(kintex_res.text, 'html.parser')
     pgl = kintex_soup.find("ul", {"class": "paging"})
