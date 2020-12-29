@@ -1,5 +1,2 @@
-# Events_Crawler: making a list of events
-
-Events: In this code, the events are exhibitions, seminars, conferences, etc. at main exhibition halls in South Korea (e.g. COEX, KINTEX)
-
-Source: For all the concepts and procedures of crawling pages in this code, I referenced a Nomad Coders' lecture about making Python web scrappers
+# Events_Crawler: making a list of events from MICE places in South Korea
+Events_Crawler is a simple Python3 code for scraping +2 month events (exhibitions, seminars, conferences, etc.) and turning them into a CSV file. For now, there are only 2 event sources (COEX, KINTEX). In this code, I referenced a Nomad Coders' lecture "Python for Beginners" about making Python web scrapers for all the concepts and procedures of crawling pages.
